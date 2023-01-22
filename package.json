@@ -1,0 +1,15 @@
+{
+  "name": "reimgpt",
+  "version": "1.0.0",
+  "description": "Verbindet zu OpenAi API und gibt Ergebnis als HTML",
+  "main": "Reim.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "openai": "^3.1.0"
+  }
+}
