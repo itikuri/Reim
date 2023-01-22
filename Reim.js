@@ -16,7 +16,7 @@ app.get("/", async (req, res) => {
   };
 
   try {
-    const response = await openai.createCompletion(options);
+    const response = await openai.completions.create(options);
     const rhyme = response.choices[0].text;
     res.send(`
     <html>
