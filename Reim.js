@@ -11,14 +11,13 @@ const configuration = new Configuration({
 app.get("/", async (req, res) => {
   try {
     const response = await openai.createCompletion({
-        model: "text-davinci-002",
+        model: "text-davinci-003",
         prompt: "Was reimt sich auf Schleim?",
-        max_tokens: 10,
+        max_tokens: 20,
         });
-    const rhyme = response.choices[0].text;
-    console.log(rhyme);
+    const rhyme = response.data.choices[0].text;
     res.send(`
-        <p>The rhyme for "Summe" is: ${rhyme}</p>
+        The rhyme for "Schleim" is: ${rhyme}</p>
     `);
   } catch (err) {
     console.log(err);
