@@ -29,3 +29,4 @@ app.get("/", async (req, res) => {
     console.log(err);
   }
 });
+app.listen(process.env.PORT||3000)
