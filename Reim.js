@@ -1,23 +1,23 @@
-const openai = require("openai");
+const { Configuration, OpenAIApi } = require("openai");
 const express = require("express");
 const app = express();
 
 // Use the API key from the environment variable
-openai.apiKey = process.env.OPENAI_API_KEY;
-
+const configuration = new Configuration({
+    apiKey: process.env.OPENAI_API_KEY,
+  });
+  const openai = new OpenAIApi(configuration);
+  
 app.get("/", async (req, res) => {
-  const prompt = "Was reimt sich auf Summe";
-
-  // Set the endpoint to text-davinci-002
-  const options = {
-    endpoint: "text-davinci-002",
-    prompt: prompt,
-    maxTokens: 100,
-  };
 
   try {
-    const response = await openai.completions.create(options);
+    const response = await openai.createCompletion({
+        endpoint: "text-davinci-002",
+        prompt: "Was reimt sich auf Schleim?",
+        maxTokens: 10,
+        });
     const rhyme = response.choices[0].text;
+    console.log(rhyme);
     res.send(`
     <html>
       <body>
