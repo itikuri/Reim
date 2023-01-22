@@ -12,9 +12,9 @@ app.get("/", async (req, res) => {
 
   try {
     const response = await openai.createCompletion({
-        endpoint: "text-davinci-002",
+        model: "text-davinci-002",
         prompt: "Was reimt sich auf Schleim?",
-        maxTokens: 10,
+        max_tokens: 10,
         });
     const rhyme = response.choices[0].text;
     console.log(rhyme);
