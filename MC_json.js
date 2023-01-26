@@ -10,14 +10,16 @@ const configuration = new Configuration({
   });
   const openai = new OpenAIApi(configuration);
 
-const ai_command = `generate as a response only a JSON object without any descriptive free text. the json object shall have this format: {"Qs": [ {}, {}, ...] } containing 2 multiple choice questions, where each question has the following format: {"Q": "string", "MC": ["string","string"], "A": "string"} with the following story: `
+const ai_command = `Generate as a response only a JSON object without any descriptive free text. The json object shall have this format: {"Qs": [ {}, {}, ...] } containing 2 multiple choice questions, where each question has the following format: {"Q": "string", "MC": ["string","string"], "A": "string"} with the following story: `
 app.get("/", (req, res) => {
   res.send(`
     <p>Multiple Choice Fragen zu einer Geschichte</p>
     <form action="/" method="post">
-      <textarea rows="20" cols="70" name="prompt"></textarea><br>
+      <textarea rows="20" cols="70" name="prompt">Es war einmal ein Huhn. Es legte zwei Eier.</textarea><br>
       <button type="submit">Submit</button>
     </form>
+    <br>This will send the following command to OpenAI<br>
+    ${ai_command}
   `);
 });
 
