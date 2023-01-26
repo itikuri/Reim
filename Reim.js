@@ -13,12 +13,13 @@ const configuration = new Configuration({
 const ai_command = `Generate as a response only a JSON object without any descriptive free text. The json object shall have this format: {"Qs": [ {}, {}, ...] } containing 2 multiple choice questions, where each question has the following format: {"Q": "string", "MC": ["string","string"], "A": "string"} with the following story: `
 app.get("/", (req, res) => {
   res.send(`
+    <title>Geschichte</title>
     <p>Multiple Choice Fragen zu einer Geschichte</p>
     <form action="/" method="post">
       <textarea rows="20" cols="70" name="prompt">Es war einmal ein Huhn. Es legte zwei Eier.</textarea><br>
       <button type="submit">Submit</button>
     </form>
-    <br>This will send the following command to OpenAI<br>
+    <br>Send the this command to OpenAI and concatenate the story<br>
     ${ai_command}
   `);
 });
@@ -39,6 +40,7 @@ app.post("/", async (req, res) => {
     let jsonObject = Object.assign({}, Geschichte, Fragen);
     let output = JSON.stringify(jsonObject, null, 4)
     res.send(`
+        <title>Fragen</title>
         <pre>${output}</pre>
     `);
   } catch (err) {
